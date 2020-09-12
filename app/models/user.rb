@@ -5,6 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  validates :password, format: { with: /[a-z\d]{6,}/i, message: 'Half-width alphanumeric characters'}
-
+  validates :password, format: { with: /[a-z\d]{6,}/i, message: 'Half-width alphanumeric characters' }
 end

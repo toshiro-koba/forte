@@ -14,12 +14,12 @@ RSpec.describe User, type: :model do
 
     context '新規登録がうまくいかないとき' do
       it 'nicknameが空では、登録できない' do
-        @user.nickname = ""
+        @user.nickname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
       it 'emailが空では、登録できない' do
-        @user.email = ""
+        @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
@@ -28,26 +28,26 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'emailに@が含まれていない場合、登録できない' do
-        @user.email = "aaa"
+        @user.email = 'aaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが空では、登録できない' do
-        @user.password = ""
+        @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank", "Password Half-width alphanumeric characters", "Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password can't be blank", 'Password Half-width alphanumeric characters', "Password confirmation doesn't match Password")
       end
       it 'passwordが６文字以上でないと、登録できない' do
-        @user.password = "123"
-        @user.password_confirmation = "123"
+        @user.password = '123'
+        @user.password_confirmation = '123'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)", "Password Half-width alphanumeric characters")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)', 'Password Half-width alphanumeric characters')
       end
       it 'passwordが存在してもpassword_confirmationが空では、登録できない' do
-        @user.password_confirmation = ""
+        @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
@@ -57,8 +57,5 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
     end
-
   end
 end
-
-
