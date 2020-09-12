@@ -4,7 +4,6 @@ class CreateQuestions < ActiveRecord::Migration[6.0]
       t.string     :question_title, null: false
       t.text       :question_text, null: false
       t.references :questioner, foreign_key: { to_table: :users }
-      t.references :game_tag, foreign_key: true
       t.timestamps
     end
   end
